@@ -62,6 +62,7 @@ int findBestMarkNumber(int* marks, int size) {
 	int max = 0;
 	bool flag = true;
 	bool resFlag = false;
+
 	for (int i = 0; i < size - 6; i++)
 	{
 		count = 0;
@@ -70,7 +71,6 @@ int findBestMarkNumber(int* marks, int size) {
 		{
 			if (marks[i + j] <= WORST_MARK_BOUND || marks[i + j] > MAX_MARK) {
 				flag = false;
-				count = 0;
 				break;
 			}
 			if (marks[i + j] == MAX_MARK)
@@ -81,11 +81,12 @@ int findBestMarkNumber(int* marks, int size) {
 		if (flag)
 		{
 			resFlag = true;
-		}
-		if (count > max)
-		{
-			max = count;
+			if (count > max)
+			{
+				max = count;
+			}
 		}
 	}
+
 	return max > 0 ? max : resFlag ? 0 : -1;
 }
